@@ -9,7 +9,7 @@ const Blogupload = () => {
     const [category,setcategory] = useState('')
   const changehandler = (e)=>{
     e.preventDefault()
-    axios.post('http://localhost:4001/blogpost',{title,category,img,desc})
+    axios.post('https://blog-data-nine.vercel.app/blogpost',{title,category,img,desc})
     .then((result)=>{
        console.log('data is save successfully')
        alert('data is saved')
