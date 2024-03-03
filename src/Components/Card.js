@@ -15,7 +15,8 @@ const Card = () => {
     try {
       const bdata = await fetch("https://blog-data-nine.vercel.app/blog/data");
       const parsedata = await bdata.json();
-      setdatas(parsedata);
+      const newdata = parsedata.blogdata;
+      setdatas(newdata);
     } catch (e) {
       console.log(e);
       console.log("failet to fetch data");
