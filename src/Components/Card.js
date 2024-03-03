@@ -24,7 +24,7 @@ const Card = () => {
 
   useEffect(() => {
     fetchdata();
-  });
+  },[]);
   
   const truncateDesc = (desc, maxLength) => {
     if (desc.length > maxLength) {
