@@ -13,7 +13,7 @@ const Card = () => {
 
   const fetchdata = async () => {
     try {
-      const bdata = await fetch("http://localhost:4001/blog/data");
+      const bdata = await fetch("https://blog-data-nine.vercel.app/blog/data");
       const parsedata = await bdata.json();
       setdatas(parsedata);
     } catch (e) {
