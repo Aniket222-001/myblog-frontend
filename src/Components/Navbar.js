@@ -1,12 +1,34 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 const Navbar = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    const storedAdminStatus = localStorage.getItem("isAdmin");
+    if (storedAdminStatus === "true") {
+      setIsAdmin(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    // Replace this with your actual authentication logic
+    const adminId = prompt("Enter admin ID:");
+    const password = prompt("Enter password:");
+
+    if (adminId === "admin" && password === "adminpassword") {
+      setIsAdmin(true);
+      // Store admin status in localStorage
+      localStorage.setItem("isAdmin", "true");
+    } else {
+      alert("Invalid credentials. Only admins can access this link.");
+    }
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Renu Blogs
+            My Blogs
           </a>
           <button
             className="navbar-toggler"
@@ -26,10 +48,16 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="Blogupload">
-                  Blogupload
-                </Link>
+             <li className="nav-item">
+                 {isAdmin ? (
+              <Link className="nav-link" to="Blogupload"  >
+                Blogupload
+              </Link>
+            ) : (
+              <Link className="nav-link" to="/" onClick={handleLogin}>
+                only for admin
+              </Link>
+            )}
               </li>
               <li className="nav-item dropdown">
                 <a
